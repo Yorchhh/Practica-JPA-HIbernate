@@ -30,7 +30,7 @@ public class Producto implements Serializable{
 	private int cantidad_en_stock;
 	
 	public Producto() {
-		
+		//
 	}
 	
 	//Constructor
