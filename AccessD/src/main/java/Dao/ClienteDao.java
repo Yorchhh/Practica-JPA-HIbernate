@@ -21,8 +21,8 @@ public class ClienteDao implements Dao<Cliente> {
 	}
 
 	public List<Cliente> mostrar() {
-		Query query = hu.getSession().createQuery("from cliente");
-		ArrayList<Cliente> clientes = (ArrayList<Cliente>) query.list();
+		Query query = hu.getSession().createQuery("SELECT e from cliente e");
+		List<Cliente> clientes = (ArrayList<Cliente>) query.list();
 //		List<Cliente> clientes = hu.getSession().createQuery("from cliente",Cliente.class).getResultList();
 		return clientes;
 	}

@@ -33,7 +33,7 @@ public class App {
 			case 2:
 				System.out.println("Introduzca el id del cliente que quiere mostras, porfavor");
 				int id = kb.nextInt();
-				cdao.mostrarporId(id);
+				System.out.println(cdao.mostrarporId(id));
 				break;
 			case 3:
 				System.out.println(cdao.mostrar().toString());
