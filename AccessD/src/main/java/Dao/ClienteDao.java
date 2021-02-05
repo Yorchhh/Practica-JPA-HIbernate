@@ -11,6 +11,7 @@ import org.hibernate.Session;
 
 import Conexion.HibernateUtils;
 import Models.Cliente;
+import net.bytebuddy.dynamic.scaffold.MethodRegistry.Handler.ForAbstractMethod;
 
 public class ClienteDao implements Dao<Cliente> {
 
@@ -21,9 +22,8 @@ public class ClienteDao implements Dao<Cliente> {
 	}
 
 	public List<Cliente> mostrar() {
-		Query query = hu.getSession().createQuery("SELECT e from cliente e");
-		List<Cliente> clientes = (ArrayList<Cliente>) query.list();
-//		List<Cliente> clientes = hu.getSession().createQuery("from cliente",Cliente.class).getResultList();
+		Query<Cliente> query =hu.getSession().createQuery("SELECT c from Cliente c",Cliente.class);
+		List<Cliente> clientes = query.getResultList();
 		return clientes;
 	}
 
@@ -31,8 +31,6 @@ public class ClienteDao implements Dao<Cliente> {
 		// RECORDAR CAMBIAR PREGUNTAS DATOS CLIENTE PARA EL SWITCH CASE
 		Session sesion = hu.getSession();// La iniciliza o utiliza la que ya esta creada
 		sesion.beginTransaction();// Iniciamos una transaccion
-
-		
 		sesion.save(t);// Grabamos el cliente en la base de datos
 		sesion.getTransaction().commit();// Finalizamos la transaccion
 		sesion.close();// cerramos la conexion
@@ -42,7 +40,6 @@ public class ClienteDao implements Dao<Cliente> {
 	public void actualizar(int id, Cliente t) {
 		Session sesion = hu.getSession();//
 		sesion.beginTransaction();
-		
 		sesion.save(t);
 		sesion.getTransaction().commit();
 		sesion.close();
